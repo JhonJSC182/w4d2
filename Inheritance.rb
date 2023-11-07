@@ -19,15 +19,18 @@ end
 
 class Manager < Employee
 
-    def initialize
-        super
+    attr_reader :employees
+
+    def initialize(name, title, salary, boss)
+        super 
         @employees = []
     end
 
-    def add_employee
-        if !boss.nil? && name == self.name
-            @employees << Employee
-        end
+    def add_employee(other_employee)
+        # if other_employee.boss == self.name
+            @employees << other_employee
+            return other_employee
+        # end
     end
 
 
@@ -43,7 +46,15 @@ class Manager < Employee
 
 end
 
-Ned = Manager.new("Ned", 'founder', 1000, nil)
-Shawna = Manager.new('Shawna', 'TA', 12000, 'Darren')
-David = Manager.new('David', 'TA', 10000, 'Darren')
+Ned = Employee.new("Ned", 'founder', 1000, nil)
+Shawna = Employee.new('Shawna', 'TA', 12000, 'Darren')
+David = Employee.new('David', 'TA', 10000, 'Darren')
 Darren = Manager.new('Darren', 'TA manager', 78000, 'Ned')
+Darren.add_employee(Shawna)
+Jhon = Employee.new('David', 'TA', 10000, 'Darren')
+Darren.add_employee(Jhon)
+p Ned
+p Shawna
+p David
+p Darren.employees
+
